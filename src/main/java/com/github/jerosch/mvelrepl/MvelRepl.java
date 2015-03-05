@@ -30,10 +30,15 @@ public class MvelRepl {
                 System.out.println(MVEL.eval(input, variableResolver));
             } catch (CompileException e) {
                 System.out.println(format("Compile-Error: %s", e.getMessage()));
+                if (e.getCause() != null) {
+                    System.out.print("Cause: ");
+                    e.getCause().printStackTrace(System.out);
+                }
             } catch (Exception e) {
                 System.out.print("ERROR: ");
                 e.printStackTrace(System.out);
             }
+            System.out.println();
         }
         reader.close();
     }
